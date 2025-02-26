@@ -17,13 +17,13 @@ import {
   Button,
 } from "@material-tailwind/react";
 
-const Cards = () => {
+const Rooms = () => {
   return (
-    <div>
-      <div className="section_title_container text-center">
-        <Typography>luxury resort</Typography>
+    <div className="mt-10">
+      <div className="section_title_container text-center ">
+        <Typography className="font-mono">LUXURY RESORT</Typography>
         <div className="section_title">
-          <Typography color="blue-gray" className="mb-2" variant="h2">
+          <Typography className="font-serif mb-2" color="blue-gray" variant="h2">
             Choose a Room
           </Typography>
         </div>
@@ -49,7 +49,7 @@ const Cards = () => {
             </div>
           </CardBody>
           <CardFooter className="pt-0">
-            <Button>Book Now</Button>
+            <Button className="rounded-none">Book Now</Button>
           </CardFooter>
         </Card>
         <Card className="mt-6 w-96">
@@ -78,7 +78,7 @@ const Cards = () => {
             <Typography variant="h5" color="blue-gray" className="mb-2">
               UI/UX Review Check
             </Typography>
-            <Typography>
+            <Typography className="color-gray-500">
               The place is close to Barceloneta Beach and bus stop just 2 min by
               walk and near to &quot;Naviglio&quot; where you can enjoy the main
               night life in Barcelona.
@@ -88,6 +88,7 @@ const Cards = () => {
             <Button>Read More</Button>
           </CardFooter>
         </Card>
+      
       </div>
 
       <div className="flex justify-center space-x-10 space-y-10">
@@ -208,4 +209,4 @@ const Cards = () => {
   );
 };
 
-export default Cards;
+export default Rooms;

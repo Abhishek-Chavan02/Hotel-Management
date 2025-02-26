@@ -8,8 +8,8 @@ function DropDownSelector({ className, label, name, value, onChange, options, la
         name={name}
         value={value}
         onChange={onChange}
-        className="w-full text-center bg-[#5A2360] text-white rounded-md px-2 py-1 cursor-pointer">
-          <option value="" disabled>{label1}</option>
+        className="w-full text-center bg-[#5A2360] text-white rounded-md px-2 py-1 cursor-pointer"
+      ><option value="" disabled>{label1}</option>
         {options.map((option) => (
           <option key={option} value={option}>
             {option}
