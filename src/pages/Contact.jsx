@@ -1,7 +1,8 @@
-
 import React from "react";
-import { Button, Input, Textarea, Typography } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 import Newsletter from "../components/Newsletter";
+import InputField from "../components/InputField";
+import AppButton from "../components/AppButton";
 
 export function Contact() {
   return (
@@ -38,65 +39,28 @@ export function Contact() {
           <div className="flex-1 max-w-lg content-center">
             <form action="#" className="flex flex-col gap-4">
               <div className="flex gap-4">
-                <div className="w-70">
-                  <Input
-                    type="text"
-                    placeholder="Your Name"
-                    name="first-name"
-                    className="!border !border-gray-300 placeholder:italic bg-white
-                     text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent
-                      placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900
-                       focus:!border-t-gray-900 focus:ring-gray-900/10 rounded-none"
-                    labelProps={{
-                      className: "hidden",
-                    }}
-                    containerProps={{ className: "min-w-[100px]" }}
-                  />
-                </div>
-                <div className="w-70">
-                  <Input
-                    type="email"
-                    placeholder="Your E-mail"
-                    name="email"
-                    className="!border !border-gray-300 placeholder:italic bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10 rounded-none"
-                    labelProps={{
-                      className: "hidden",
-                    }}
-                    containerProps={{ className: "min-w-[100px]" }}
-                  />
-                </div>
-              </div>
-              <div className="w-full">
-                <Input
+                <InputField
                   type="text"
-                  placeholder="Subject"
-                  name="subject"
-                  className="!border !border-gray-300 placeholder:italic bg-white text-gray-900 shadow-lg
-                   shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100
-                    focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10 rounded-none"
-                  labelProps={{
-                    className: "hidden",
-                  }}
-                  containerProps={{ className: "min-w-[100px]" }}
+                  placeholder="Your Name"
+                  name="first-name"
+                />
+                <InputField
+                  type="email"
+                  placeholder="Your E-mail"
+                  name="email"
                 />
               </div>
-              <div className="w-full">
-                <Textarea
-                  type="text"
-                  placeholder="Message"
-                  name="message"
-                  className="!border !border-gray-300 placeholder:italic bg-white text-gray-900 shadow-lg
-                   shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100
-                    focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10 rounded-none"
-                  labelProps={{
-                    className: "hidden",
-                  }}
-                  containerProps={{ className: "min-w-[100px]" }}
-                />
-              </div>
-              <Button className="w-full" color="gray">
-                Subscribe
-              </Button>
+              <InputField type="text" placeholder="Subject" name="subject" />
+              <InputField
+                type="textarea"
+                placeholder="Message"
+                name="message"
+              />
+              <AppButton
+                className="w-full"
+                color="gray"
+                title="Subscribe"
+              ></AppButton>
             </form>
           </div>
         </div>
@@ -117,4 +81,3 @@ export function Contact() {
 }
 
 export default Contact;
-

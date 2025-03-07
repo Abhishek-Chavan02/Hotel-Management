@@ -84,7 +84,7 @@ function BookingTabs() {
                 <CardBody className="flex flex-col md:flex-row items-center justify-between gap-4">
 
                     <DatePicker onClick={(e) => toggleCalendar(e, true)} label="CHECK-IN" date={checkInDate} className="w-full md:w-1/3 bg-[#5A2360] text-white p-4 rounded-lg text-center cursor-pointer" />
-                    <DatePicker onClick={(e) => toggleCalendar(e, false)} label="CHECK-IN" date={checkOutDate} className="w-full md:w-1/3 bg-[#5A2360] text-white p-4 rounded-lg text-center cursor-pointer" />
+                    <DatePicker onClick={(e) => toggleCalendar(e, false)} label="CHECK-OUT" date={checkOutDate} className="w-full md:w-1/3 bg-[#5A2360] text-white p-4 rounded-lg text-center cursor-pointer" />
 
 
                     <DropDownSelector label="ROOMS" value={selectedRooms} onChange={(e) => setSelectedRooms(e.target.value)} label1="--select rooms --" options={["1", "2", "3", "4", "5"]} className="w-full md:w-1/3 bg-[#5A2360] text-white p-4 rounded-lg text-center cursor-pointer" />

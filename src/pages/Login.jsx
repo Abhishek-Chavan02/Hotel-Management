@@ -1,30 +1,38 @@
-
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUser } from "../app/userApi";
+import { useNavigate } from "react-router-dom";
+import { Alert, Button } from "@material-tailwind/react";
+import LoginAndSignupInput from "../components/LoginAndSignupInput";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";  // Import Toastify styles
 
 const Login = () => {
-  const { loading, userInfo, message, error } = useSelector(
-    (state) => state.user
-  );
+  const { loading, userInfo, message, error } = useSelector((state) => state.user);
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState(
-    {
-      email: "",
-      password: ""
-    });
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
 
-    useEffect(() => {
-      if (error && !loading) {
-        alert(message);
-      } else if (!error && !loading && userInfo) {
-        alert("Success");
-      }
-    }, [dispatch, loading, userInfo, message, error]);
-    
+  const userData = localStorage.getItem("user");
+
+  useEffect(() => {
+    if (error && !loading) {
+      toast.error(error);
+    } else if (!error && !loading && userInfo) {
+      toast.success(message);
+      setTimeout(() => {
+        navigate("/home");
+      }, 1000);
+    }
+  }, [dispatch, loading, userInfo, message, error, navigate]);
+
   const handleLogin = (e) => {
     e.preventDefault();
     setErrors({ email: "", password: "" });
@@ -37,7 +45,7 @@ const Login = () => {
       hasError = true;
     }
 
-    if (!password.trim() || password.length < 6) {
+    if (!password.trim() || password.length < 4) {
       newErrors.password = "Password must be at least 6 characters.";
       hasError = true;
     }
@@ -55,51 +63,38 @@ const Login = () => {
       <div className="bg-white p-5 shadow-lg rounded-lg" style={{ width: "400px" }}>
         <h2 className="text-center text-xl font-semibold mb-4">Login</h2>
         <form onSubmit={handleLogin}>
+          <LoginAndSignupInput
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setErrors({ ...errors, email: "" });
+            }}
+            placeholder="Enter email"
+            name="email"
+            error={errors.email}
+            type="email"
+          />
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setErrors({ ...errors, email: "" });
-              }}
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            />
-            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
-          </div>
+          <LoginAndSignupInput
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setErrors({ ...errors, password: "" });
+            }}
+            placeholder="Enter password"
+            name="password"
+            error={errors.password}
+            type="password"
+          />
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              type="password"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setErrors({ ...errors, password: "" });
-              }}
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            />
-            {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
-          </div>
-
-          <button
+          <Button
+            variant="contained"
             type="submit"
             className="w-full py-2 px-4 bg-[#5A2360] text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
           >
             Login
-          </button>
+          </Button>
         </form>
-
         <p className="text-center mt-4 text-sm">
           Create account{" "}
           <a href="/signup" className="text-blue-500 hover:text-blue-700">
@@ -107,9 +102,12 @@ const Login = () => {
           </a>
         </p>
       </div>
+
+
+      <ToastContainer position="top-center" autoClose={3000} hideProgressBar newestOnTop />
+
     </div>
   );
 };
 
 export default Login;
-

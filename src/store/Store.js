@@ -1,5 +1,4 @@
 
-
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "../redux/userSlice";
 const store = configureStore({
@@ -10,4 +9,3 @@ const store = configureStore({
 });
 
 export default store;
-
